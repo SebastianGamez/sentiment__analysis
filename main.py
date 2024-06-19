@@ -9,19 +9,29 @@ from fastapi.middleware.cors import CORSMiddleware
 # Import database connection
 from database.connection_database import engine
 from database.test_database import test_database_connection
-
-
-# Test the database connection
-test_database_connection(engine)
+from database.create_all_tables_database import create_all_tables
+from routes.v1.user_route import user_router
 
 # Create the app
 app = FastAPI()
 
 # Set cors
 app.add_middleware(
-     CORSMiddleware,
-     allow_origins=["*"],
-     allow_credentials=True,
-     allow_methods=["*"],
-     allow_headers=["*"],
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
+
+# Activate the routes
+app.include_router(user_router)
+
+
+# Create a startup event that runs when the server starts
+@app.on_event("startup")
+def startup() -> None:
+    # Test the database connection
+    test_database_connection(engine)
+    # Create the tables
+    create_all_tables()

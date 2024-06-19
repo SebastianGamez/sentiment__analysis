@@ -9,3 +9,6 @@ load_dotenv('.env.dev')
 
 # Set the env variables
 DATABASE_URL: str = os.getenv('DATABASE_URL')
+
+# Set the JWT password
+JWT_PASSWORD: str = os.getenv('JWT_PASSWORD')
