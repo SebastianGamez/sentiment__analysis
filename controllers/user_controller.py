@@ -22,7 +22,7 @@ class UserController:
         self.user_service: UserService = UserService()
 
     # Create the method to create the user
-    def create_user(self, user: UserUpdateType) -> ResponseType:
+    def register_user(self, user: UserUpdateType) -> ResponseType:
         # try to create the user
         try:
             # Check if the email is already in use
@@ -41,7 +41,7 @@ class UserController:
                 # Create the response
                 response = ResponseType(status=409, message="Email already in use")
         except Exception as e:
-            raise f'Error creating user: {e}'
+            raise f'Error registering user: {e}'
         # Return the response
         return response
 

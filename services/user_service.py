@@ -47,7 +47,7 @@ class UserService:
     # Create the method to get the user by email
     def get_user_by_email(self, user: UserUpdateType) -> ResponseType:
         # Create the response type
-        response_type: ResponseType
+        response_type: ResponseType[UserType]
         # Create the select query
         stmt: Select = Select(User).where(User.email == user.email)
         # Try to create a session and get the user

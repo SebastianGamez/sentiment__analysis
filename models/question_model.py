@@ -11,12 +11,15 @@ from sqlalchemy import Date
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 
+# Import the datetime library.
+from datetime import date
+
 
 class Question(Base):
     __tablename__ = "question"
     id_question: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     question: Mapped[str] = mapped_column(String(255))
-    date: Mapped[str] = mapped_column(Date)
+    date: Mapped[str] = mapped_column(Date, default=date.today())
 
     def __repr__(self) -> str:
         return f"Question(id_question={self.id_question}, question={self.question}, date={self.date})"

@@ -2,7 +2,7 @@
 # Author: Sebastián Gámez Ariza
 
 # Import libraries
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 
 # Import controllers
 from controllers.user_controller import UserController
@@ -28,7 +28,7 @@ user_router: APIRouter = APIRouter(
 @user_router.post("/register")
 async def create_user(user: UserUpdateType) -> ResponseType:
     # Create the user
-    response = user_controller.create_user(user)
+    response = user_controller.register_user(user)
     # Return the response
     return response
 

@@ -11,6 +11,7 @@ from database.connection_database import engine
 from database.test_database import test_database_connection
 from database.create_all_tables_database import create_all_tables
 from routes.v1.user_route import user_router
+from routes.v1.question_route import question_router
 
 # Create the app
 app = FastAPI()
@@ -26,6 +27,7 @@ app.add_middleware(
 
 # Activate the routes
 app.include_router(user_router)
+app.include_router(question_router)
 
 
 # Create a startup event that runs when the server starts
