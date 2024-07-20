@@ -41,7 +41,10 @@ class UserController:
                 # Create the response
                 response = ResponseType(status=409, message="Email already in use")
         except Exception as e:
-            raise f'Error registering user: {e}'
+            # Print the error
+            print(f'Error registering user: {e}')
+            # Raise the error
+            raise e
         # Return the response
         return response
 
@@ -68,6 +71,9 @@ class UserController:
                 else:
                     response = ResponseType(status=401, message="User or password incorrect")
         except Exception as e:
-            raise f'Error logging in user: {e}'
+            # Print the error
+            print(f'Error logging in user: {e}')
+            # Raise the error
+            raise e
         # Return the response
         return response

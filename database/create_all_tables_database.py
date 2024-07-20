@@ -2,7 +2,7 @@
 # Author: Sebastian Gámez Ariza
 
 # Import the base class
-from models.base_model import Base
+from models.model_model import Base
 
 # Import the engine
 from database.connection_database import engine

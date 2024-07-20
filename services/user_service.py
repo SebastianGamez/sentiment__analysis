@@ -9,7 +9,7 @@ from sqlalchemy import Engine, Select
 from database.connection_database import engine
 
 # Importing models
-from models.user_model import User
+from models.model_model import User
 
 # Importing types
 from type.response_type import ResponseType
@@ -39,8 +39,10 @@ class UserService:
             # Create the response
             response_type = ResponseType(status=201, message="User created")
         except Exception as e:
+            # Print the error
+            print(f'Error creating user {e}')
             # Raise an error
-            raise f'Error creating user: {e}'
+            raise e
         # Return the response type
         return response_type
 
@@ -73,7 +75,9 @@ class UserService:
                         }
                     )
         except Exception as e:
+            # Print the error
+            print(f'Error getting user: {e}')
             # Throw an error
-            raise f'Error getting user: {e}'
+            raise e
         # Return the response type
         return response_type

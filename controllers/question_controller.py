@@ -23,7 +23,9 @@ class QuestionController:
             # Create the question
             response = self.question_service.create_question(question)
         except Exception as e:
-            raise f'Error creating question: {e}'
+            # Print the error
+            print(f'Error creating question: {e}')
+            raise e
         # Return the response
         return response
 
@@ -34,7 +36,10 @@ class QuestionController:
             # Get the question
             response = self.question_service.get_question_by_id(id_question)
         except Exception as e:
-            raise f'Error getting question: {e}'
+            # Print the error
+            print(f'Error getting question: {e}')
+            # Raise the error
+            raise e
         # Return the response
         return response
 
@@ -45,6 +50,9 @@ class QuestionController:
             # Get all the questions
             response = self.question_service.get_all_questions()
         except Exception as e:
-            raise f'Error getting questions: {e}'
+            # Print the error
+            print(f'Error getting questions: {e}')
+            # Raise the error
+            raise e
         # Return the response
         return response

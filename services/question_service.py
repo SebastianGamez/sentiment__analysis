@@ -9,7 +9,7 @@ from sqlalchemy import Engine, Select
 from database.connection_database import engine
 
 # Importing models
-from models.question_model import Question
+from models.model_model import Question
 
 # Importing types
 from type.response_type import ResponseType
@@ -39,8 +39,10 @@ class QuestionService:
             # Create the response
             response_type = ResponseType(status=201, message="Question created")
         except Exception as e:
+            # Print the error
+            print(f'Error creating question {e}')
             # Raise an error
-            raise f'Error creating question: {e}'
+            raise e
         # Return the response type
         return response_type
 
@@ -71,8 +73,10 @@ class QuestionService:
                         }
                     )
         except Exception as e:
+            # Print the error
+            print(f'Error getting question: {e}')
             # Raise an error
-            raise f'Error getting question: {e}'
+            raise e
         # Return the response type
         return response_type
 
@@ -90,7 +94,6 @@ class QuestionService:
                     # Create the response
                     response_type = ResponseType(status=404, message="Questions not found")
                 else:
-                    print(questions_db)
                     # Create the response
                     response_type = ResponseType(
                         status=200,
@@ -104,7 +107,9 @@ class QuestionService:
                         ]
                     )
         except Exception as e:
+            # Print the error
+            print(f'Error getting questions: {e}')
             # Raise an error
-            raise f'Error getting questions: {e}'
+            raise e
         # Return the response type
         return response_type

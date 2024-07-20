@@ -11,6 +11,7 @@ class UserType(BaseModel):
     email: str
     password: str
     role: str
+    analyses: list
 
 
 # Create the user update type
@@ -20,3 +21,4 @@ class UserUpdateType(BaseModel):
     email: str | None = None
     password: str | None = None
     role: str | None = None
+    analyses: list | None = None
