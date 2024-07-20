@@ -84,8 +84,17 @@ class AnalysisService:
                                 "pos": analysis.pos,
                                 "neg": analysis.neg,
                                 "neu": analysis.neu,
-                                "question_id": analysis.question_id,
-                                "user_id": analysis.user_id
+                                "question": {
+                                    "id_question": analysis.question.id_question,
+                                    "question": analysis.question.question,
+                                    "date": analysis.question.date
+                                },
+                                "user": {
+                                    "id_user": analysis.user.id_user,
+                                    "name": analysis.user.name,
+                                    "email": analysis.user.email,
+                                    "role": analysis.user.role
+                                }
                             } for analysis in analysis_db
                         ]
                     )
@@ -122,8 +131,17 @@ class AnalysisService:
                                 "pos": analysis.pos,
                                 "neg": analysis.neg,
                                 "neu": analysis.neu,
-                                "question_id": analysis.question_id,
-                                "user_id": analysis.user_id
+                                "question": {
+                                    "id_question": analysis.question.id_question,
+                                    "question": analysis.question.question,
+                                    "date": analysis.question.date
+                                },
+                                "user": {
+                                    "id_user": analysis.user.id_user,
+                                    "name": analysis.user.name,
+                                    "email": analysis.user.email,
+                                    "role": analysis.user.role
+                                }
                             } for analysis in analysis_db
                         ]
                     )

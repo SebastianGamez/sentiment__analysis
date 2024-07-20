@@ -34,7 +34,7 @@ class User(Base):
     analyses: Mapped[List["Analysis"]] = relationship(back_populates="user")
 
     def __repr__(self) -> str:
-        return f"User(id_user={self.id_user}, name={self.name}, email={self.email}, role={self.role}), analyses={self.analyses}"
+        return f"User(id_user={self.id_user}, name={self.name}, email={self.email}, role={self.role})"
 
 
 # Create the analysis model
@@ -52,7 +52,7 @@ class Analysis(Base):
     user: Mapped["User"] = relationship(back_populates="analyses")
 
     def __repr__(self) -> str:
-        return f"Analysis(id_analysis={self.id_analysis}, pos={self.pos}, neg={self.neg}, neu={self.neu}, question_id={self.question_id}, user_id={self.user_id})"
+        return f"Analysis(id_analysis={self.id_analysis}, pos={self.pos}, neg={self.neg}, neu={self.neu}, question_id={self.question_id}, user_id={self.user_id}), question={self.question}, user={self.user}"
 
 
 # Create the question model
@@ -65,5 +65,5 @@ class Question(Base):
     analyses: Mapped["Analysis"] = relationship(back_populates="question")
 
     def __repr__(self) -> str:
-        return f"Question(id_question={self.id_question}, question={self.question}, date={self.date}), analyses={self.analyses}"
+        return f"Question(id_question={self.id_question}, question={self.question}, date={self.date})"
 
