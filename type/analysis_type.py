@@ -3,6 +3,8 @@
 
 # Importing libraries
 from pydantic import BaseModel
+from type.question_type import QuestionUpdateType
+from type.user_type import UserUpdateType
 
 
 # Create the analysis type
@@ -14,8 +16,8 @@ class AnalysisType(BaseModel):
     neu: float
     question_id: int
     user_id: int
-    question: object
-    user: object
+    question: QuestionUpdateType
+    user: UserUpdateType
 
 
 # Create the analysis update type
@@ -27,5 +29,5 @@ class AnalysisUpdateType(BaseModel):
     neu: float | None = None
     question_id: int | None = None
     user_id: int | None = None
-    question: object | None = None
-    user: object | None = None
+    question: QuestionUpdateType | None = None
+    user: UserUpdateType | None = None
