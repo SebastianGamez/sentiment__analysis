@@ -72,7 +72,6 @@ class AnalysisService:
                     # Create the response
                     response_type = ResponseType(status=404, message="Analysis not found")
                 else:
-                    print(analysis_db)
                     # Create the response
                     response_type = ResponseType(
                         status=200,
