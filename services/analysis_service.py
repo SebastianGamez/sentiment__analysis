@@ -2,8 +2,9 @@
 # Author: Sebastian Gámez Ariza
 
 # Importing libraries
+import pandas as pd
 from sqlalchemy.orm import Session
-from sqlalchemy import Engine, Select
+from sqlalchemy import Engine
 from pysentimiento import create_analyzer
 
 # Importing the engine
@@ -151,3 +152,80 @@ class AnalysisService:
             raise e
         # Return the response type
         return response_type
+
+    # Create the method to get the analysis statistics by user id
+    def get_analysis_statistics_by_user_id(self, user_id: str) -> ResponseType:
+        # Create the response type
+        response_type: ResponseType
+        # Try to create a session and get the analysis
+        try:
+            with Session(self.engine) as session:
+                # Get the analysis
+                analysis_db = session.query(Analysis).filter(Analysis.user_id == user_id).all()
+                # If the analysis is not found
+                if analysis_db is None:
+                    # Create the response
+                    response_type = ResponseType(status=404, message="Analysis not found")
+                else:
+                    # Get the analyses data
+                    analysis_dataframe = pd.DataFrame(
+                        [
+                            {
+                                "pos": analysis.pos,
+                                "neg": analysis.neg,
+                                "neu": analysis.neu
+                            } for analysis in analysis_db
+                        ]
+                    )
+                    # Create the response
+                    response_type = ResponseType(
+                        status=200,
+                        message="Analysis found",
+                        data=analysis_dataframe.describe().to_dict()
+                    )
+        except Exception as e:
+            # Print the error
+            print(f'Error getting analysis {e}')
+            # Raise an error
+            raise e
+        # Return the response type
+        return response_type
+
+    # Create the method to get the analysis statistics by question id
+    def get_analysis_statistics_by_question_id(self, question_id: str) -> ResponseType:
+        # Create the response type
+        response_type: ResponseType
+        # Try to create a session and get the analysis
+        try:
+            with Session(self.engine) as session:
+                # Get the analysis
+                analysis_db = session.query(Analysis).filter(Analysis.question_id == question_id).all()
+                # If the analysis is not found
+                if analysis_db is None:
+                    # Create the response
+                    response_type = ResponseType(status=404, message="Analysis not found")
+                else:
+                    # Get the analyses data
+                    analysis_dataframe = pd.DataFrame(
+                        [
+                            {
+                                "pos": analysis.pos,
+                                "neg": analysis.neg,
+                                "neu": analysis.neu
+                            } for analysis in analysis_db
+                        ]
+                    )
+                    # Create the response
+                    response_type = ResponseType(
+                        status=200,
+                        message="Analysis found",
+                        data=analysis_dataframe.describe().to_dict()
+                    )
+        except Exception as e:
+            # Print the error
+            print(f'Error getting analysis {e}')
+            # Raise an error
+            raise e
+        # Return the response type
+        return response_type
+

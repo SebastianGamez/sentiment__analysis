@@ -56,3 +56,31 @@ class AnalysisController:
             raise e
         # Return the response
         return response
+
+    # Create the method to get the analysis statistics by user id
+    def get_analysis_statistics_by_user_id(self, user_id: str) -> ResponseType:
+        # try to get the analysis
+        try:
+            # Get the analysis
+            response = self.analysis_service.get_analysis_statistics_by_user_id(user_id)
+        except Exception as e:
+            # Print the error
+            print(f'Error getting analysis: {e}')
+            # Raise the error
+            raise e
+        # Return the response
+        return response
+
+    # Create the method to get the analysis statistics by question id
+    def get_analysis_statistics_by_question_id(self, question_id: str) -> ResponseType:
+        # try to get the analysis
+        try:
+            # Get the analysis
+            response = self.analysis_service.get_analysis_statistics_by_question_id(question_id)
+        except Exception as e:
+            # Print the error
+            print(f'Error getting analysis: {e}')
+            # Raise the error
+            raise e
+        # Return the response
+        return response

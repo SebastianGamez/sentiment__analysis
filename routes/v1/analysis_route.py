@@ -50,3 +50,21 @@ async def get_analysis_by_question_id(question_id: str) -> ResponseType:
     response = analysis_controller.get_analysis_by_question_id(question_id)
     # Return the response
     return response
+
+
+# Create the route to get the analysis statistics by user id
+@analysis_router.get("/user/statistics/{user_id}")
+async def get_analysis_statistics_by_user_id(user_id: str) -> ResponseType:
+    # Get the analysis
+    response = analysis_controller.get_analysis_statistics_by_user_id(user_id)
+    # Return the response
+    return response
+
+
+# Create the route to get the analysis statistics by question id
+@analysis_router.get("/question/statistics/{question_id}")
+async def get_analysis_statistics_by_question_id(question_id: str) -> ResponseType:
+    # Get the analysis
+    response = analysis_controller.get_analysis_statistics_by_question_id(question_id)
+    # Return the response
+    return response
