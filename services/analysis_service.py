@@ -228,4 +228,3 @@ class AnalysisService:
             raise e
         # Return the response type
         return response_type
-
